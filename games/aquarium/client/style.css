@@ -1,0 +1,44 @@
+.aq { position: absolute; inset: 0; color: #fff; font-family: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif; }
+.aq canvas { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+.aq-hud { position: absolute; inset: 0; pointer-events: none; }
+
+/* --- tiêu đề + mục tiêu tim --- */
+.aq-top { position: absolute; left: 40px; right: 40px; top: 40px; }
+.aq-title { font-size: 58px; font-weight: 800; letter-spacing: 1px; text-align: center; text-shadow: 0 4px 18px rgba(0,0,0,.45); }
+.aq-goal { margin-top: 18px; padding: 16px 22px; border-radius: 24px; background: rgba(0, 30, 50, .55); border: 2px solid rgba(255,255,255,.18); backdrop-filter: blur(4px); }
+.aq-goal-label { display: flex; justify-content: space-between; font-size: 30px; margin-bottom: 10px; }
+.aq-goal-bar { height: 26px; border-radius: 13px; background: rgba(255,255,255,.15); overflow: hidden; }
+.aq-goal-fill { height: 100%; width: 0; border-radius: 13px; background: linear-gradient(90deg, #ff6fa8, #ffd36f); transition: width .4s ease; }
+
+/* --- hướng dẫn chơi --- */
+.aq-howto { position: absolute; left: 40px; right: 40px; top: 300px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.aq-howto span { font-size: 27px; padding: 8px 18px; border-radius: 999px; background: rgba(0, 0, 0, .35); border: 1px solid rgba(255,255,255,.2); }
+
+/* --- bảng xếp hạng --- */
+.aq-lb { position: absolute; right: 30px; top: 390px; width: 330px; padding: 16px 18px; border-radius: 22px; background: rgba(0, 20, 40, .5); border: 2px solid rgba(255, 215, 120, .45); }
+.aq-lb h3 { margin: 0 0 8px; font-size: 26px; color: #ffd978; }
+.aq-lb ol { margin: 0; padding: 0; list-style: none; }
+.aq-lb li { display: flex; justify-content: space-between; gap: 8px; font-size: 24px; padding: 4px 0; border-top: 1px solid rgba(255,255,255,.1); }
+.aq-lb li:first-child { border-top: 0; }
+.aq-lb .n { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 190px; }
+.aq-lb .t { color: #9fe6ff; font-size: 20px; white-space: nowrap; }
+.aq-lb.empty { display: none; }
+
+/* --- bậc cá (luôn cố định, không ngẫu nhiên) --- */
+.aq-tiers { position: absolute; left: 30px; right: 30px; bottom: 70px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; padding: 14px; border-radius: 24px; background: rgba(0, 20, 40, .55); border: 2px solid rgba(255,255,255,.15); }
+.aq-tier { text-align: center; }
+.aq-tier canvas { position: static; width: 120px; height: 70px; display: block; margin: 0 auto; }
+.aq-tier .nm { font-size: 21px; font-weight: 700; }
+.aq-tier .c { font-size: 20px; color: #ffd978; }
+
+/* --- thông báo sự kiện --- */
+.aq-banners { position: absolute; left: 60px; right: 60px; top: 400px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.aq-banner { max-width: 640px; padding: 14px 24px; border-radius: 22px; font-size: 30px; background: linear-gradient(90deg, rgba(255, 120, 170, .92), rgba(255, 190, 90, .92)); box-shadow: 0 8px 26px rgba(0,0,0,.3); animation: aq-in .4s ease-out, aq-out .5s ease-in forwards; animation-delay: 0s, var(--life, 4s); }
+.aq-banner.evolve { font-size: 34px; font-weight: 700; background: linear-gradient(90deg, rgba(120, 90, 255, .95), rgba(60, 200, 255, .95)); }
+.aq-banner.follow { background: linear-gradient(90deg, rgba(255, 200, 40, .92), rgba(255, 150, 40, .92)); color: #2a1a00; }
+@keyframes aq-in { from { transform: translateX(-60px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes aq-out { to { transform: translateX(-40px); opacity: 0; } }
+
+.aq-party { position: absolute; left: 0; right: 0; top: 820px; text-align: center; font-size: 90px; font-weight: 900; text-shadow: 0 6px 30px rgba(255, 80, 180, .8); opacity: 0; transition: opacity .5s; }
+.aq-party.on { opacity: 1; animation: aq-pulse 1s ease-in-out infinite; }
+@keyframes aq-pulse { 50% { transform: scale(1.06); } }

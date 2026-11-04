@@ -1,0 +1,78 @@
+.rc { position: absolute; inset: 0; color: #fff; font-family: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif; }
+.rc canvas.rc-main { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+.rc-hud { position: absolute; inset: 0; pointer-events: none; }
+
+/* ---------- đầu trang ---------- */
+.rc-top { position: absolute; left: 0; right: 0; top: 28px; text-align: center; }
+.rc-title {
+  display: inline-block; padding: 10px 46px 14px; border-radius: 28px;
+  font-size: 62px; font-weight: 900; letter-spacing: 1px; line-height: 1.1;
+  color: #fff8e1;
+  background: linear-gradient(180deg, #ff8a3d, #e5531b);
+  border: 5px solid #fff1c9;
+  box-shadow: 0 8px 0 #9c3410, 0 14px 30px rgba(0,0,0,.35);
+  text-shadow: 0 4px 0 #9c3410;
+}
+.rc-sub { margin-top: 16px; display: flex; justify-content: center; gap: 14px; align-items: center; }
+.rc-pill { font-size: 32px; font-weight: 900; padding: 8px 28px; border-radius: 999px; background: #ffd43b; color: #4a2c00; box-shadow: 0 5px 0 #c99400; }
+.rc-pill.race { background: #ff4d4d; color: #fff; box-shadow: 0 5px 0 #a51f1f; animation: rc-blink 1s steps(2) infinite; }
+.rc-pill.result { background: #845ef7; color: #fff; box-shadow: 0 5px 0 #5232c4; }
+@keyframes rc-blink { 50% { filter: brightness(1.25); } }
+.rc-round { font-size: 30px; font-weight: 800; padding: 6px 20px; border-radius: 999px; background: rgba(0,0,0,.35); }
+
+.rc-howto { position: absolute; left: 20px; right: 20px; top: 232px; display: flex; justify-content: center; gap: 10px; }
+.rc-howto span { font-size: 25px; font-weight: 600; padding: 7px 16px; border-radius: 999px; background: rgba(20, 40, 20, .55); border: 2px solid rgba(255,255,255,.35); white-space: nowrap; }
+
+/* ---------- thẻ đội ---------- */
+.rc-cards { position: absolute; left: 30px; right: 30px; top: 1500px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.rc-card {
+  position: relative; border-radius: 26px; padding: 10px 6px 14px; text-align: center;
+  background: var(--bg);
+  border: 4px solid var(--c);
+  box-shadow: 0 6px 0 rgba(0,0,0,.35);
+  transition: transform .15s;
+}
+.rc-card.lead { box-shadow: 0 0 0 4px #fff3, 0 0 30px var(--c), 0 6px 0 rgba(0,0,0,.35); }
+.rc-card.pulse { transform: scale(1.07); }
+.rc-card .num { position: absolute; left: 50%; top: -24px; transform: translateX(-50%); width: 50px; height: 50px; line-height: 44px; font-size: 32px; font-weight: 900; border-radius: 50%; background: var(--c); color: #fff; border: 4px solid #fff; text-shadow: 0 2px 0 rgba(0,0,0,.3); }
+.rc-card canvas { display: block; width: 180px; height: 132px; margin: 14px auto -4px; }
+.rc-card .nm { font-size: 32px; font-weight: 900; text-shadow: 0 3px 0 rgba(0,0,0,.35); }
+.rc-card .meta { font-size: 22px; opacity: .92; margin-top: 2px; }
+.rc-card .bar { position: relative; height: 18px; margin: 10px 12px 0; border-radius: 9px; background: rgba(0,0,0,.4); overflow: hidden; }
+.rc-card .bar i { position: absolute; inset: 0 auto 0 0; width: 0; border-radius: 9px; background: linear-gradient(90deg, var(--c), #fff); transition: width .2s; }
+.rc-card .bar b { position: absolute; inset: 0; font-size: 14px; line-height: 18px; font-weight: 800; color: #fff; text-shadow: 0 1px 2px #000; }
+
+.rc-fans { position: absolute; left: 30px; right: 30px; top: 1790px; text-align: center; font-size: 26px; padding: 12px 18px; border-radius: 20px; background: rgba(20, 10, 40, .7); border: 2px solid rgba(255, 215, 90, .5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- bảng giữa màn hình ---------- */
+.rc-center { position: absolute; left: 80px; right: 80px; top: 600px; padding: 30px 28px 34px; border-radius: 40px; text-align: center; background: rgba(25, 12, 50, .86); border: 4px solid rgba(255,255,255,.3); box-shadow: 0 24px 70px rgba(0,0,0,.5); transition: opacity .35s, transform .35s; }
+.rc-center.hidden { opacity: 0; transform: scale(.85); }
+.rc-center h2 { margin: 0 0 8px; font-size: 50px; font-weight: 900; }
+.rc-center p { margin: 12px 0 0; font-size: 31px; }
+.rc-ring { position: relative; width: 260px; height: 260px; margin: 10px auto; }
+.rc-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.rc-ring .n { position: absolute; inset: 0; display: grid; place-items: center; font-size: 120px; font-weight: 900; color: #ffd43b; text-shadow: 0 6px 0 #a87700; }
+.rc-choices { display: flex; justify-content: center; gap: 14px; margin-top: 16px; }
+.rc-choices div { padding: 6px 14px 10px; border-radius: 20px; border: 3px solid var(--c); background: rgba(255,255,255,.06); }
+.rc-choices canvas { width: 110px; height: 80px; display: block; }
+.rc-choices b { display: block; font-size: 34px; color: var(--c); }
+
+.rc-podium { display: flex; justify-content: center; align-items: flex-end; gap: 14px; margin-top: 10px; }
+.rc-podium .p { width: 210px; }
+.rc-podium canvas { width: 200px; height: 150px; display: block; margin: 0 auto -6px; }
+.rc-podium .blk { border-radius: 16px 16px 0 0; font-size: 54px; font-weight: 900; color: #fff; text-shadow: 0 3px 0 rgba(0,0,0,.35); padding-top: 8px; }
+.rc-podium .p1 .blk { height: 170px; background: linear-gradient(#ffd43b, #f59f00); }
+.rc-podium .p2 .blk { height: 120px; background: linear-gradient(#dee2e6, #adb5bd); }
+.rc-podium .p3 .blk { height: 90px; background: linear-gradient(#ffa94d, #d9480f); }
+.rc-podium .nm { font-size: 26px; font-weight: 800; margin-bottom: 4px; }
+.rc-mvp { margin-top: 20px; font-size: 30px; padding: 12px 18px; border-radius: 20px; background: rgba(255, 212, 59, .14); border: 2px solid rgba(255, 212, 59, .55); }
+
+/* ---------- chữ bay khi cổ vũ ---------- */
+.rc-float { position: absolute; z-index: 2; white-space: nowrap; font-size: 24px; font-weight: 800; padding: 6px 14px; border-radius: 999px; background: rgba(0,0,0,.6); border: 3px solid var(--c); animation: rc-up 2s ease-out forwards; }
+.rc-float.gift { font-size: 30px; background: linear-gradient(90deg, #ff922b, #fcc419); color: #3b1f00; border-color: #fff; }
+.rc-float.super { font-size: 34px; background: linear-gradient(90deg, #f06595, #845ef7); border-color: #fff; }
+.rc-float.event { font-size: 30px; background: #fff; color: #222; }
+@keyframes rc-up { 0% { opacity: 0; transform: translate(-50%, 16px) scale(.8); } 12% { opacity: 1; transform: translate(-50%, 0) scale(1); } 80% { opacity: 1; transform: translate(-50%, -60px); } 100% { opacity: 0; transform: translate(-50%, -90px); } }
+
+.rc-banner { position: absolute; left: 0; right: 0; top: 820px; text-align: center; font-size: 84px; font-weight: 900; color: #fff; -webkit-text-stroke: 4px #7a1600; text-shadow: 0 8px 0 #7a1600, 0 0 40px rgba(255, 120, 40, .9); animation: rc-flash 2s ease-out forwards; }
+@keyframes rc-flash { 0% { opacity: 0; transform: scale(1.8); } 15% { opacity: 1; transform: scale(1); } 75% { opacity: 1; } 100% { opacity: 0; transform: scale(.9); } }

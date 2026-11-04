@@ -1,0 +1,18 @@
+{
+  "name": "live-tiktok-games",
+  "version": "0.1.0",
+  "description": "Nền tảng game tương tác cho TikTok Live (đa game dạng plugin). Game đầu tiên: Bể cá chung.",
+  "main": "server/index.js",
+  "private": true,
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "express": "^5.1.0",
+    "msedge-tts": "^2.1.1",
+    "socket.io": "^4.8.1",
+    "tiktok-live-connector": "^2.5.0"
+  }
+}

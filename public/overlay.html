@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Live Overlay</title>
+  <link rel="stylesheet" href="/css/overlay.css" />
+</head>
+<body>
+  <!-- Sân khấu cố định 1080x1920, tự co giãn vừa cửa sổ (OBS: Browser Source 1080x1920) -->
+  <div id="stage">
+    <div id="game-root"></div>
+    <div id="tts-caption" hidden></div>
+    <div id="disclaimer">Trò chơi giải trí · Điểm và vật phẩm không có giá trị quy đổi</div>
+    <div id="loading">Đang tải game…</div>
+  </div>
+  <button id="unlock-audio" hidden>🔊 Bấm để bật âm thanh</button>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="/js/overlay.js"></script>
+</body>
+</html>

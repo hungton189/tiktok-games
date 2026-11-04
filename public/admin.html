@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Live Games – Admin</title>
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+  <header>
+    <h1>🎮 Live TikTok Games</h1>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <main>
+    <section class="col">
+      <!-- Kết nối TikTok -->
+      <div class="card">
+        <h2>Kết nối TikTok Live</h2>
+        <div class="row">
+          <input id="tt-user" placeholder="username TikTok (không cần @)" />
+          <button id="tt-connect" class="primary">Kết nối</button>
+          <button id="tt-disconnect">Ngắt</button>
+        </div>
+        <details>
+          <summary>Sign API key (tuỳ chọn)</summary>
+          <p class="hint">Chỉ cần khi bị giới hạn lượt kết nối. Lấy key tại eulerstream.com.</p>
+          <input id="tt-key" type="password" placeholder="Dán API key rồi bấm Kết nối" />
+        </details>
+        <p id="tt-status" class="status">—</p>
+      </div>
+
+      <!-- Giả lập -->
+      <div class="card">
+        <h2>Chế độ giả lập</h2>
+        <p class="hint">Tạo người xem và sự kiện giả để test, không cần lên live.</p>
+        <div class="row">
+          <label>Tốc độ <input id="sim-speed" type="range" min="0.2" max="5" step="0.1" value="1" /></label>
+          <span id="sim-speed-val">1x</span>
+          <button id="sim-toggle" class="primary">Bắt đầu</button>
+        </div>
+        <div class="row wrap">
+          <button data-sim="join">👋 Người vào</button>
+          <button data-sim="chat">💬 Bình luận</button>
+          <button data-sim="like">❤️ 10 tim</button>
+          <button data-sim="follow">⭐ Follow</button>
+          <button data-sim="share">🔁 Share</button>
+        </div>
+        <div class="row wrap">
+          <button data-gift="1">🎁 1 xu</button>
+          <button data-gift="5">🎁 5 xu</button>
+          <button data-gift="30">🎁 30 xu</button>
+          <button data-gift="99">🎁 99 xu</button>
+          <button data-gift="299">🎁 299 xu</button>
+          <button data-gift="1000">🎁 1000 xu</button>
+        </div>
+      </div>
+
+      <!-- Game -->
+      <div class="card">
+        <h2>Game đang chạy</h2>
+        <div class="row">
+          <select id="game-select"></select>
+          <button id="game-activate" class="primary">Bật game này</button>
+        </div>
+        <p id="game-desc" class="hint"></p>
+        <form id="game-settings" class="settings"></form>
+        <div id="game-actions" class="row wrap"></div>
+      </div>
+
+      <!-- Giọng đọc -->
+      <div class="card">
+        <h2>Giọng đọc AI</h2>
+        <div class="row wrap">
+          <label class="check"><input id="tts-enabled" type="checkbox" /> Bật</label>
+          <select id="tts-provider">
+            <option value="kokoro">Kokoro tiếng Việt (chạy trên máy)</option>
+            <option value="edge">Microsoft Edge (cần Internet)</option>
+          </select>
+        </div>
+        <div id="tts-kokoro-box">
+          <div class="row wrap">
+            <select id="tts-kvoice"><option value="diem_trinh">Diễm Trinh</option></select>
+            <button id="tts-kreload" title="Tải lại danh sách giọng từ server Kokoro">↻ Giọng</button>
+            <label>Tốc độ <input id="tts-kspeed" type="number" min="0.5" max="2" step="0.05" style="width:80px" /></label>
+          </div>
+          <div class="row wrap">
+            <label class="check"><input id="tts-fallback" type="checkbox" /> Server Kokoro không chạy thì tạm dùng Edge (giọng khác)</label>
+          </div>
+          <p class="hint">Cần bật server Kokoro trước: nhấp đúp <code>tts-server/start_kokoro.command</code>.</p>
+        </div>
+        <div id="tts-edge-box" class="row wrap">
+          <select id="tts-voice">
+            <option value="vi-VN-HoaiMyNeural">Hoài My (nữ)</option>
+            <option value="vi-VN-NamMinhNeural">Nam Minh (nam)</option>
+          </select>
+          <select id="tts-rate">
+            <option value="-10%">Chậm</option>
+            <option value="+0%">Bình thường</option>
+            <option value="+10%">Nhanh</option>
+            <option value="+20%">Rất nhanh</option>
+          </select>
+        </div>
+        <div class="row">
+          <input id="tts-text" placeholder="Câu đọc thử" value="Xin chào cả nhà, chào mừng đến với bể cá!" />
+          <button id="tts-test">Đọc thử</button>
+          <button id="tts-clear">Xoá hàng đợi</button>
+        </div>
+        <p id="tts-status" class="status">—</p>
+      </div>
+
+      <!-- Nhạc nền -->
+      <div class="card">
+        <h2>Nhạc nền</h2>
+        <div class="row wrap">
+          <label class="check"><input id="mu-enabled" type="checkbox" /> Bật</label>
+          <select id="mu-source">
+            <option value="generated">Nhạc tự tạo (không lo bản quyền)</option>
+            <option value="files">File nhạc của tôi (thư mục music/)</option>
+          </select>
+        </div>
+        <div class="row">
+          <label style="flex:1;display:flex;gap:8px;align-items:center">Âm lượng <input id="mu-volume" type="range" min="0" max="1" step="0.01" style="flex:1" /></label>
+          <span id="mu-volume-val"></span>
+        </div>
+        <div class="row wrap">
+          <label class="check"><input id="mu-duck" type="checkbox" /> Nhỏ nhạc khi AI đọc</label>
+          <button id="mu-rescan">↻ Quét lại thư mục nhạc</button>
+        </div>
+        <p id="mu-info" class="hint"></p>
+      </div>
+
+      <!-- Lọc nội dung -->
+      <div class="card">
+        <h2>Từ cấm bổ sung</h2>
+        <p class="hint">Mỗi dòng một từ. Đã có sẵn danh sách mặc định (cá cược, tục tĩu, link, số điện thoại).</p>
+        <textarea id="banned" rows="3"></textarea>
+        <button id="banned-save">Lưu</button>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="card">
+        <h2>Xem trước overlay <a href="/overlay.html" target="_blank" class="small">mở tab mới ↗</a></h2>
+        <div class="preview"><iframe id="preview" src="/overlay.html?preview=1" title="overlay"></iframe></div>
+      </div>
+      <div class="card">
+        <h2>Nhật ký sự kiện</h2>
+        <ul id="log"></ul>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" hidden></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
